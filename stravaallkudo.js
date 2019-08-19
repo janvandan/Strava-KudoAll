@@ -27,10 +27,8 @@
   	for (let i = 0; i < kudosButtons.length; i++) {
     
     	let thiskudoButtons = kudosButtons[i];
-    	let typeButton = thiskudoButtons.getAttribute("type");
-    
-    	if ( debug > 1 ) { console.log(nameJavaScript + ".giveKudo2all : typeButton : " + typeButton); }
-      if ( debug > 1 ) { console.log(nameJavaScript + ".giveKudo2all : clickKudo : " + thiskudoButtons.data-entry); }
+    	
+      if ( debug > 1 ) { console.log(nameJavaScript + ".giveKudo2all : clickKudo : " + thiskudoButtons.getAttribute('data-entry')); }
     
     	thiskudoButtons.click();
   	}
