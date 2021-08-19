@@ -1,1 +1,93 @@
+// ==UserScript==
+// @name           Jan Strava kudo II...
+// @namespace      http://www.janvd.fr
+// @description    Met des kudos sur la page en cours
+// @include        https://www.strava.com/dashboard
+// ==/UserScript==
 
+(function () {
+  
+	var debug = 2;
+	var nameJavaScript = 'Jan Strava kudo II...';
+  
+  // <button class="Button--btn--1UWRP Button--default--33OIF KudosAndComments--social-button--1QAOS" type="button" title="Afficher tous les kudos" data-testid="kudos_button">
+  // <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-testid="unfilled_kudos" height="16" width="16">
+  
+  var flagKudoToBeDone = 'unfilled_kudos';
+  
+  
+  /*
+  	giveKudo2all : list every Kudo "ToBeDone" (flag with the tag flagKudoToBeDone and click on the associated button
+  */
+	function giveKudo2all() {
+    
+    if ( debug > 1 ) { console.log(nameJavaScript + ".giveKudo2all : start"); }
+  
+		const kudosSVGButtons = Array.from(document.querySelectorAll("svg[data-testid='unfilled_kudos']"));
+      	
+  	if ( debug > 1 ) { console.log(nameJavaScript + ".giveKudo2all : kudosButtons.length : " + kudosSVGButtons.length); }
+  
+  	for (let i = 0; i < kudosSVGButtons.length; i++) {
+    
+    	let thiskudoButtons = kudosSVGButtons[i].parentNode;
+    	
+      if ( debug > 1 ) { console.log(nameJavaScript + ".giveKudo2all : clickKudo[" + i + "] : " + thiskudoButtons.getAttribute('data-testid')); }
+    
+    	thiskudoButtons.click();
+  	}
+    
+    if ( debug > 1 ) { console.log(nameJavaScript + ".giveKudo2all : end"); }
+	}
+  
+  /*
+  	actionButton : actions started when the event click button is detected
+  */
+  function actionButton() {
+    
+    if ( debug > 1 ) { console.log(nameJavaScript + ".actionButton : start"); }
+    
+    giveKudo2all();
+    
+    if ( debug > 1 ) { console.log(nameJavaScript + ".actionButton : end"); }
+  }
+  
+  /*
+  	initInput : create an input's button on the strava dashboard page, on the left just at the end of the profile square
+  */
+  function initInput() {
+    
+    if ( debug > 1 ) { console.log(nameJavaScript + ".initInput : start"); }
+    
+    const divFormybutton = document.getElementById('athlete-profile');
+    const inputButton = document.createElement('input');
+    
+    divFormybutton.appendChild(inputButton);
+    
+    inputButton.id="myKudobutton";
+    inputButton.type="button";
+    inputButton.value="Give kudo to ALL";
+		
+    // inputButton.setAttribute("style", "font-family:-apple-system;font-size:16px;position:absolute;top:100px;right:40px;");
+  
+    inputButton.addEventListener('click', actionButton, true);
+    
+    if ( debug > 1 ) { console.log(nameJavaScript + ".initInput : end"); }
+  }
+  
+	try {
+    
+  	// Debut code
+  	if ( debug > 1 ) { console.log(nameJavaScript + ".main : debut execution code");}
+  
+    initInput();
+     
+	}
+
+	catch (e) {
+  	alert("UserScript exception:\n" + e);
+	}
+
+	// Fin code
+	if ( debug ) { console.log(nameJavaScript + ".main : fin execution code ");}
+  
+})();
