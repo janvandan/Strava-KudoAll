@@ -6,6 +6,7 @@ Must be connectet (log in) to www.strava.com/dashboard (or any www.strava/dashbo
 
 Could be use via an external launcher like Greasemonkey.
 
-Before july 2021 // Or, simply via the console, same as the "document.querySelectorAll('button.js-add-kudo').forEach(node => node.click());" line.
+Current script to use : https://github.com/janvandan/Strava-KudoAll/blob/master/stravaallkudoII.js
 
-
+Archives :
+stravaallkudo.js (before july 2021). Or, simply via the console, same as the "document.querySelectorAll('button.js-add-kudo').forEach(node => node.click());" line.
