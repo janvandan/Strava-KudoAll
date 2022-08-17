@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Jan Strava kudo II...
-// @namespace      http://www.janvd.fr
+// @namespace      https://github.com/janvandan
 // @description    Met des kudos sur la page en cours
 // @include        https://www.strava.com/dashboard
 // ==/UserScript==
