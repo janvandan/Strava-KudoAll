@@ -60,7 +60,7 @@
     
     /* before 26/10/2023, display on child element athlete-profile, on the top left screen
     const divFormybutton = document.getElementById('athlete-profile');
-    since 26/10/2023 display on top center of the screen via container-nav */
+    since 26/10/2023 display on top center of the screen via container-nav
     */
     const divFormybutton = document.getElementById('container-nav'); 
     const inputButton = document.createElement('input');
