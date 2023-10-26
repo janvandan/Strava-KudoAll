@@ -1,4 +1,4 @@
-# Strava-KudoAll or Give kudos to every event in your Strava feed
+# Strava-KudoAll / Give kudos to every event in your Strava feed / Automatic kudos on Strava
 
 Ajout d'un bouton sur la fenêtre strava pour mettre un kudo à l'ensemble de votre fil en une seule fois
 
