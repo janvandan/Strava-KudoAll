@@ -6,7 +6,7 @@ Simple java script to give kudos on all new activities on the current Strava web
 
 Must be connectet (log in) to www.strava.com/dashboard (or any www.strava/dashboard/*) before to run the script.
 
-Could be use via an external launcher like Greasemonkey.
+Could be use via an external launcher like Greasemonkey (https://fr.wikipedia.org/wiki/Greasemonkey).
 
 from 2021-08-10 : Current script to use : https://github.com/janvandan/Strava-KudoAll/blob/master/stravaallkudoII.js
 
