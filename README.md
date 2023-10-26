@@ -1,4 +1,4 @@
-# Strava-KudoAll
+# Strava-KudoAll or Give kudos to every event in your Strava feed
 
 Simple java script to give kudos on all new activities on the current Strava web page (https://www.strava.com/dashboard/*)
 
