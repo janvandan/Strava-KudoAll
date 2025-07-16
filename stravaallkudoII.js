@@ -85,10 +85,6 @@
 
 		while ( tagTestFinAffichageActivites.length === 0) {
 
-			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Fin d’affichage des activités."); }
-			
-		} else {
-
 			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Reste des activités a afficher."); }
 
 			window.scrollTo({
@@ -98,6 +94,8 @@
 
 			tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
 		}
+
+		if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Fin d’affichage des activités."); }
 	}
   
 	try {
