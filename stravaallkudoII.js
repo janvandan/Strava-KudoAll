@@ -42,6 +42,12 @@
 	function actionButton() {
     
 		if ( debug > 1 ) { console.log(nameJavaScript + ".actionButton : start"); }
+
+		if ( debug > 1 ) { console.log(nameJavaScript + ".actionButton : chargeMaxActivite"); }
+
+		chargeMaxActivite();
+
+		if ( debug > 1 ) { console.log(nameJavaScript + ".actionButton : giveKudo2all"); }
     
 		giveKudo2all();
     
@@ -83,6 +89,8 @@
 
 		let tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
 
+		if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : tagTestFinAffichageActivites.length =" + tagTestFinAffichageActivites.length); }
+
 		while ( tagTestFinAffichageActivites.length === 0) {
 
 			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Reste des activités a afficher."); }
@@ -95,7 +103,7 @@
 			tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
 		}
 
-		if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Fin d’affichage des activités."); }
+		if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : end"); }
 	}
   
 	try {
