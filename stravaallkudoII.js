@@ -90,6 +90,11 @@
 		let tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
 		let tagDernierActiviteDeLaPage;
 
+		let lastDiv = document.getElementsByClassName("MIt1i")[0]; // class "MIt1i", dernier div de bas de page
+		let lastDivPrevSibling = lastDiv.previousElementSibling; // recup de la derniere activite avant "MIt1i"
+		let idActiviteActive = lastDivPrevSibling.getElementsByClassName("CQdSY")[0].id; // recup de l'id de la derniere activite
+		let idActiviteNext = idActiviteActive;
+
 		if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : tagTestFinAffichageActivites.length = " + tagTestFinAffichageActivites.length); }
 
 		while ( tagTestFinAffichageActivites.length === 0) {
@@ -106,9 +111,14 @@
 				behavior: 'smooth'
 			});
 
-			tagDernierActiviteDeLaPage = document.getElementsByClassName("f5jBr");
+			while ( idActiviteActive === idActiviteNext ) {
+				
+				lastDiv = document.getElementsByClassName("MIt1i")[0]; // class "MIt1i", dernier div de bas de page
+				lastDivPrevSibling = lastDiv.previousElementSibling; // recup de la derniere activite avant "MIt1i"
+				idActiviteNext = lastDivPrevSibling.getElementsByClassName("CQdSY")[0].id; // recup de l'id de la derniere activite
 
-			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : tagDernierActiviteDeLaPage.length = " + tagDernierActiviteDeLaPage.length); }
+				if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" ); }
+			}
 
 			tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
 
