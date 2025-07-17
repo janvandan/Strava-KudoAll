@@ -114,6 +114,8 @@
 			while ( idActiviteActive === idActiviteNext ) {
 
 				setTimeout(() => {
+						console.log(nameJavaScript + ".chargeMaxActivite : Delayed for 2 second.");
+					}, 2000);
 					
 					lastDiv = document.getElementsByClassName("MIt1i")[0]; // class "MIt1i", dernier div de bas de page
 					lastDivPrevSibling = lastDiv.previousElementSibling; // recup de la derniere activite avant "MIt1i"
@@ -121,7 +123,7 @@
 
 					if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" ); }
 					
-				}, 2000);
+				
 			}
 
 			tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
