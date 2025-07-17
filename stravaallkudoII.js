@@ -9,6 +9,7 @@
   
 	var debug = 2;
 	var nameJavaScript = 'Jan Strava kudo II...';
+	var pageActivite = 1;
   
 	// <button class="Button--btn--1UWRP Button--default--33OIF KudosAndComments--social-button--1QAOS" type="button" title="Afficher tous les kudos" data-testid="kudos_button">
 	// <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-testid="unfilled_kudos" height="16" width="16">
@@ -72,7 +73,7 @@
     
 		inputButton.id="myKudobutton";
 		inputButton.type="button";
-		inputButton.value="Give kudo to ALL";
+		inputButton.value="Give kudo to ALL" + pageActivite;
 		
 		// inputButton.setAttribute("style", "font-family:-apple-system;font-size:16px;position:absolute;top:100px;right:40px;");
   
