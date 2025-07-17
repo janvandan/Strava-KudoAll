@@ -89,9 +89,9 @@
 
 		let tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
 
-		if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : tagTestFinAffichageActivites.length =" + tagTestFinAffichageActivites.length); }
+		if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : tagTestFinAffichageActivites.length = " + tagTestFinAffichageActivites.length); }
 
-		while ( tagTestFinAffichageActivites.length === 0) {
+		if ( tagTestFinAffichageActivites.length === 0) {
 
 			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Reste des activités a afficher."); }
 
@@ -101,6 +101,8 @@
 			});
 
 			tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
+
+			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : tagTestFinAffichageActivites.length = " + tagTestFinAffichageActivites.length); }
 		}
 
 		if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : end"); }
