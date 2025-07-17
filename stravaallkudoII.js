@@ -49,7 +49,7 @@
 
 		if ( debug > 1 ) { console.log(nameJavaScript + ".actionButton : giveKudo2all"); }
     
-		giveKudo2all();
+		// giveKudo2all();
     
 		if ( debug > 1 ) { console.log(nameJavaScript + ".actionButton : end"); }
 	}
@@ -96,7 +96,8 @@
 			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Reste des activités a afficher."); }
 
 			window.scrollTo({
-				top: document.body.scrollHeight,
+			//	top: document.body.scrollHeight,
+				top: tagTestFinAffichageActivites[0].offsetTop,
 				behavior: 'smooth'
 			});
 
