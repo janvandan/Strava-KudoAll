@@ -95,9 +95,11 @@
 
 			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Reste des activités a afficher."); }
 
+			let tagDernierActiviteDeLaPage = document.getElementsByClassName("f5jBr");
+
 			window.scrollTo({
 			//	top: document.body.scrollHeight,
-				top: tagTestFinAffichageActivites[0].offsetTop,
+				top: tagDernierActiviteDeLaPage[0].offsetTop,
 				behavior: 'smooth'
 			});
 
