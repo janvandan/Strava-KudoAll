@@ -88,6 +88,7 @@
 		// La derniere class affichee par strava lorsqu'on au bout du bout du scroll est egale a "f5jBr JlaW0"
 
 		let tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
+		let tagDernierActiviteDeLaPage;
 
 		if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : tagTestFinAffichageActivites.length = " + tagTestFinAffichageActivites.length); }
 
@@ -95,15 +96,19 @@
 
 			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Reste des activités a afficher."); }
 
-			// La derniere class de la dernier activité affichee dans la page par strava est egale a "f5jBr"
+			// La derniere class de la derniere activité affichee dans la page par strava est egale a "f5jBr"
 			
-			let tagDernierActiviteDeLaPage = document.getElementsByClassName("f5jBr");
+			tagDernierActiviteDeLaPage = document.getElementsByClassName("f5jBr");
 
 			window.scrollTo({
 			//	top: document.body.scrollHeight,
 				top: tagDernierActiviteDeLaPage[0].offsetTop,
 				behavior: 'smooth'
 			});
+
+			tagDernierActiviteDeLaPage = document.getElementsByClassName("f5jBr");
+
+			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : tagDernierActiviteDeLaPage.length = " + tagDernierActiviteDeLaPage.length); }
 
 			tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
 
