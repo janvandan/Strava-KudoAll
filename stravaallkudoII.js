@@ -121,7 +121,7 @@
 
 					if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" ); }
 					
-				}, "2 second");
+				}, 2000);
 			}
 
 			tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
