@@ -112,12 +112,16 @@
 			});
 
 			while ( idActiviteActive === idActiviteNext ) {
-				
-				lastDiv = document.getElementsByClassName("MIt1i")[0]; // class "MIt1i", dernier div de bas de page
-				lastDivPrevSibling = lastDiv.previousElementSibling; // recup de la derniere activite avant "MIt1i"
-				idActiviteNext = lastDivPrevSibling.getElementsByClassName("CQdSY")[0].id; // recup de l'id de la derniere activite
 
-				if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" ); }
+				setTimeout(() => {
+					
+					lastDiv = document.getElementsByClassName("MIt1i")[0]; // class "MIt1i", dernier div de bas de page
+					lastDivPrevSibling = lastDiv.previousElementSibling; // recup de la derniere activite avant "MIt1i"
+					idActiviteNext = lastDivPrevSibling.getElementsByClassName("CQdSY")[0].id; // recup de l'id de la derniere activite
+
+					if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" ); }
+					
+				}, "2 second");
 			}
 
 			tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
