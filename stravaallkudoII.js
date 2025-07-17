@@ -97,7 +97,7 @@
 
 		if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : tagTestFinAffichageActivites.length = " + tagTestFinAffichageActivites.length); }
 
-		while ( tagTestFinAffichageActivites.length === 0) {
+		if ( tagTestFinAffichageActivites.length === 0) {
 
 			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Reste des activités a afficher."); }
 
@@ -111,19 +111,13 @@
 				behavior: 'smooth'
 			});
 
-			while ( idActiviteActive === idActiviteNext ) {
-
-				setTimeout(() => {
-						console.log(nameJavaScript + ".chargeMaxActivite : Delayed for 2 second.");
-					}, 2000);
+			if ( idActiviteActive === idActiviteNext ) {
 					
-					lastDiv = document.getElementsByClassName("MIt1i")[0]; // class "MIt1i", dernier div de bas de page
-					lastDivPrevSibling = lastDiv.previousElementSibling; // recup de la derniere activite avant "MIt1i"
-					idActiviteNext = lastDivPrevSibling.getElementsByClassName("CQdSY")[0].id; // recup de l'id de la derniere activite
+				lastDiv = document.getElementsByClassName("MIt1i")[0]; // class "MIt1i", dernier div de bas de page
+				lastDivPrevSibling = lastDiv.previousElementSibling; // recup de la derniere activite avant "MIt1i"
+				idActiviteNext = lastDivPrevSibling.getElementsByClassName("CQdSY")[0].id; // recup de l'id de la derniere activite
 
-					if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" ); }
-					
-				
+				if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" ); }
 			}
 
 			tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
