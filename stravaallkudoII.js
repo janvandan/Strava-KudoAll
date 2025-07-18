@@ -74,7 +74,7 @@
     
 		inputButton.id="myKudobutton";
 		inputButton.type="button";
-		inputButton.value="Give kudo to ALL" + pageActivite;
+		inputButton.value="Give kudo to ALL n" + pageActivite;
 		
 		// inputButton.setAttribute("style", "font-family:-apple-system;font-size:16px;position:absolute;top:100px;right:40px;");
   
@@ -113,6 +113,9 @@
 				behavior: 'smooth'
 			});
 
+			pageActivite += 1;
+			inputButton.value="Give kudo to ALL n" + pageActivite;
+			
 			if ( idActiviteActive === idActiviteNext ) {
 					
 				lastDiv = document.getElementsByClassName("MIt1i")[0]; // class "MIt1i", dernier div de bas de page
