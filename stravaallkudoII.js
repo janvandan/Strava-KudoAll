@@ -127,7 +127,16 @@
 						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" );
 					}
 				}, 1000);
-
+				setTimeout(() => {
+					if ( debug > 1 ) {
+						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" );
+					}
+				}, 2000);
+				setTimeout(() => {
+					if ( debug > 1 ) {
+						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" );
+					}
+				}, 3000);
 			}
 
 			tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
