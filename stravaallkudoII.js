@@ -9,6 +9,7 @@
   
 	var debug = 2;
 	var nameJavaScript = 'Jan Strava kudo II...';
+	var inputButton = document.createElement('input');
 	var pageActivite = 1;
   
 	// <button class="Button--btn--1UWRP Button--default--33OIF KudosAndComments--social-button--1QAOS" type="button" title="Afficher tous les kudos" data-testid="kudos_button">
@@ -67,7 +68,7 @@
 		*/
 		
 		const divFormybutton = document.getElementById('container-nav');
-		const inputButton = document.createElement('input');
+		// const inputButton = document.createElement('input');
     
 		divFormybutton.appendChild(inputButton);
     
