@@ -128,6 +128,10 @@
 			tagTestFinAffichageActivites = document.getElementsByClassName("f5jBr JlaW0");
 
 			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : tagTestFinAffichageActivites.length = " + tagTestFinAffichageActivites.length); }
+		} else {
+			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Fin des activités a afficher."); }
+
+			inputButton.value="Give kudo to ALL Fini";
 		}
 
 		if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : end"); }
