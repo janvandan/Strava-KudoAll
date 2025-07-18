@@ -116,7 +116,7 @@
 			pageActivite += 1;
 			inputButton.value="Give kudo to ALL n" + pageActivite;
 			
-			if ( idActiviteActive === idActiviteNext ) {
+			while ( idActiviteActive === idActiviteNext ) {
 				
 				lastDiv = document.getElementsByClassName("MIt1i")[0]; // class "MIt1i", dernier div de bas de page
 				lastDivPrevSibling = lastDiv.previousElementSibling; // recup de la derniere activite avant "MIt1i"
@@ -124,19 +124,9 @@
 					
 				setTimeout(() => {
 					if ( debug > 1 ) {
-						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (1) (" + idActiviteActive + ", " + idActiviteNext + ")" );
+						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" );
 					}
 				}, 1000);
-				setTimeout(() => {
-					if ( debug > 1 ) {
-						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (1) (" + idActiviteActive + ", " + idActiviteNext + ")" );
-					}
-				}, 2000);
-				setTimeout(() => {
-					if ( debug > 1 ) {
-						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (1) (" + idActiviteActive + ", " + idActiviteNext + ")" );
-					}
-				}, 3000);
 
 			}
 
