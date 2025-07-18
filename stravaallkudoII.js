@@ -124,17 +124,17 @@
 					
 				setTimeout(() => {
 					if ( debug > 1 ) {
-						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" );
+						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (1) (" + idActiviteActive + ", " + idActiviteNext + ")" );
 					}
 				}, 1000);
 				setTimeout(() => {
 					if ( debug > 1 ) {
-						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" );
+						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (2) (" + idActiviteActive + ", " + idActiviteNext + ")" );
 					}
 				}, 2000);
 				setTimeout(() => {
 					if ( debug > 1 ) {
-						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (" + idActiviteActive + ", " + idActiviteNext + ")" );
+						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (3) (" + idActiviteActive + ", " + idActiviteNext + ")" );
 					}
 				}, 3000);
 			}
