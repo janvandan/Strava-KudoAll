@@ -116,7 +116,7 @@
 			pageActivite += 1;
 			inputButton.value="Give kudo to ALL n" + pageActivite;
 			
-			while ( idActiviteActive === idActiviteNext ) {
+			if ( idActiviteActive === idActiviteNext ) {
 				
 				lastDiv = document.getElementsByClassName("MIt1i")[0]; // class "MIt1i", dernier div de bas de page
 				lastDivPrevSibling = lastDiv.previousElementSibling; // recup de la derniere activite avant "MIt1i"
