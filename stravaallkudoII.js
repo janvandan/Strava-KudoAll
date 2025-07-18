@@ -122,14 +122,20 @@
 				lastDivPrevSibling = lastDiv.previousElementSibling; // recup de la derniere activite avant "MIt1i"
 				idActiviteNext = lastDivPrevSibling.getElementsByClassName("CQdSY")[0].id; // recup de l'id de la derniere activite
 					
-				setTimeout(() => if ( debug > 1 ) {
-					console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (1) (" + idActiviteActive + ", " + idActiviteNext + ")" );
+				setTimeout(() => {
+					if ( debug > 1 ) {
+						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (1) (" + idActiviteActive + ", " + idActiviteNext + ")" );
+					}
 				}, 1000);
-				setTimeout(() => if ( debug > 1 ) {
-					console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (2) (" + idActiviteActive + ", " + idActiviteNext + ")" );
+				setTimeout(() => {
+					if ( debug > 1 ) {
+						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (1) (" + idActiviteActive + ", " + idActiviteNext + ")" );
+					}
 				}, 2000);
-				setTimeout(() => if ( debug > 1 ) {
-					console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (3) (" + idActiviteActive + ", " + idActiviteNext + ")" );
+				setTimeout(() => {
+					if ( debug > 1 ) {
+						console.log(nameJavaScript + ".chargeMaxActivite : (idActiviteActive, idActiviteNext) = (1) (" + idActiviteActive + ", " + idActiviteNext + ")" );
+					}
 				}, 3000);
 
 			}
