@@ -103,6 +103,8 @@
 
 			if ( debug > 1 ) { console.log(nameJavaScript + ".chargeMaxActivite : Reste des activités a afficher."); }
 
+			inputButton.parentElement.remove();
+
 			// La derniere class de la derniere activité affichee dans la page par strava est egale a "f5jBr"
 			
 			tagDernierActiviteDeLaPage = document.getElementsByClassName("f5jBr");
