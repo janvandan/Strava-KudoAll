@@ -32,8 +32,10 @@
 			let thiskudoButtons = kudosSVGButtons[i].parentNode;
     	
 			if ( debug > 1 ) { console.log(nameJavaScript + ".giveKudo2all : clickKudo[" + i + "] : " + thiskudoButtons.getAttribute('data-testid')); }
-    
-			thiskudoButtons.click();
+
+			setTimeout(() => {
+				thiskudoButtons.click();
+			}, index * 300);
 		}
     
 		if ( debug > 1 ) { console.log(nameJavaScript + ".giveKudo2all : end"); }
