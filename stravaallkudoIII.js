@@ -42,23 +42,35 @@
         if (debug > 1) console.log(nameJavaScript + ".giveKudo2all : end");
     }
 
-    // Scrolle jusqu'à la fin du fil
-    function scrollToBottom() {
-        if (debug > 1) console.log(nameJavaScript + ".scrollToBottom : start");
+    // Simule un scroll manuel pour déclencher le chargement dynamique
+    function simulateManualScroll() {
         return new Promise((resolve) => {
             let lastHeight = document.body.scrollHeight;
+            let scrollAttempts = 0;
+            const maxAttempts = 10; // Nombre maximal de tentatives de scroll
+
             const scrollInterval = setInterval(() => {
-                window.scrollTo(0, document.body.scrollHeight);
-                // Attend que de nouvelles activités soient chargées
+                // Simule un événement de scroll utilisateur
+                window.scrollBy(0, 500);
+                window.dispatchEvent(new Event('scroll'));
+
                 setTimeout(() => {
                     const newHeight = document.body.scrollHeight;
-                    if (newHeight === lastHeight) {
+                    if (debug > 1) console.log(nameJavaScript + ".simulateManualScroll : tentative " + (scrollAttempts + 1) + ", hauteur : " + newHeight);
+
+                    if (newHeight > lastHeight) {
+                        lastHeight = newHeight;
+                        scrollAttempts = 0; // Réinitialise si de nouvelles activités sont chargées
+                    } else {
+                        scrollAttempts++;
+                    }
+
+                    if (scrollAttempts >= maxAttempts || newHeight >= document.body.scrollHeight) {
                         clearInterval(scrollInterval);
                         resolve();
                     }
-                    lastHeight = newHeight;
                 }, 1000);
-            }, 2000);
+            }, 1500);
         });
     }
 
