@@ -92,7 +92,8 @@
     try {
         if (debug > 1) console.log(nameJavaScript + ".main : début execution code");
         // Attend que la page soit chargée
-        window.addEventListener('load', initInput);
+        // window.addEventListener('load', initInput);
+        initInput();
     } catch (e) {
         alert("UserScript exception:\n" + e);
     }
