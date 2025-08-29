@@ -10,7 +10,6 @@
     const debug = 2;
     const nameJavaScript = 'Jan Strava kudo III';
     const flagKudoToBeDone = 'unfilled_kudos';
-    let isScrolling = false;
     let pageActivite = 1;
 
     // Crée le bouton
@@ -23,8 +22,12 @@
     function initInput() {
         if (debug > 1) console.log(nameJavaScript + ".initInput : start");
         const divFormybutton = document.getElementById('container-nav');
-        divFormybutton.appendChild(inputButton);
-        inputButton.addEventListener('click', actionButton);
+        if (divFormybutton) {
+            divFormybutton.appendChild(inputButton);
+            inputButton.addEventListener('click', actionButton);
+        } else {
+            console.error(nameJavaScript + ".initInput : Impossible de trouver l'élément 'container-nav'.");
+        }
         if (debug > 1) console.log(nameJavaScript + ".initInput : end");
     }
 
@@ -33,12 +36,17 @@
         if (debug > 1) console.log(nameJavaScript + ".giveKudo2all : start");
         const kudosSVGButtons = Array.from(document.querySelectorAll(`svg[data-testid='${flagKudoToBeDone}']`));
         if (debug > 1) console.log(nameJavaScript + ".giveKudo2all : kudosButtons.length : " + kudosSVGButtons.length);
+
         kudosSVGButtons.forEach((button, index) => {
             setTimeout(() => {
-                button.parentNode.click();
-                if (debug > 1) console.log(nameJavaScript + ".giveKudo2all : kudo donné à l'activité " + index);
+                const kudoButton = button.closest('button');
+                if (kudoButton) {
+                    kudoButton.click();
+                    if (debug > 1) console.log(nameJavaScript + ".giveKudo2all : kudo donné à l'activité " + index);
+                }
             }, index * 300); // Délai pour éviter le rate limiting
         });
+
         if (debug > 1) console.log(nameJavaScript + ".giveKudo2all : end");
     }
 
@@ -47,10 +55,8 @@
         return new Promise((resolve) => {
             let lastHeight = document.body.scrollHeight;
             let scrollAttempts = 0;
-            const maxAttempts = 10; // Nombre maximal de tentatives de scroll
-
+            const maxAttempts = 15; // Augmenté pour plus de fiabilité
             const scrollInterval = setInterval(() => {
-                // Simule un événement de scroll utilisateur
                 window.scrollBy(0, 500);
                 window.dispatchEvent(new Event('scroll'));
 
@@ -65,19 +71,19 @@
                         scrollAttempts++;
                     }
 
-                    if (scrollAttempts >= maxAttempts || newHeight >= document.body.scrollHeight) {
+                    if (scrollAttempts >= maxAttempts) {
                         clearInterval(scrollInterval);
                         resolve();
                     }
-                }, 1000);
-            }, 1500);
+                }, 1500); // Délai augmenté pour laisser le temps au chargement
+            }, 2000);
         });
     }
 
     // Action principale : scrolle puis donne les kudos
     async function actionButton() {
         if (debug > 1) console.log(nameJavaScript + ".actionButton : start");
-        await scrollToBottom();
+        await simulateManualScroll();
         giveKudo2all();
         if (debug > 1) console.log(nameJavaScript + ".actionButton : end");
     }
@@ -85,9 +91,11 @@
     // Initialisation
     try {
         if (debug > 1) console.log(nameJavaScript + ".main : début execution code");
-        initInput();
+        // Attend que la page soit chargée
+        window.addEventListener('load', initInput);
     } catch (e) {
         alert("UserScript exception:\n" + e);
     }
+
     if (debug) console.log(nameJavaScript + ".main : fin execution code");
 })();
