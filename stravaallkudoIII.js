@@ -50,40 +50,28 @@
         if (debug > 1) console.log(nameJavaScript + ".giveKudo2all : end");
     }
 
-    // Simule un scroll manuel pour déclencher le chargement dynamique
-    function simulateManualScroll() {
-        return new Promise((resolve) => {
-            let lastHeight = document.body.scrollHeight;
-            let scrollAttempts = 0;
-            const maxAttempts = 15; // Augmenté pour plus de fiabilité
-            const scrollInterval = setInterval(() => {
-                window.scrollBy(0, 500);
-                window.dispatchEvent(new Event('scroll'));
+// Fonction pour scroller jusqu'à l'élément avec la classe "MIt1i"
+function scrollToEndMarker() {
+    return new Promise((resolve) => {
+        const checkInterval = setInterval(() => {
+            const endMarker = document.querySelector('.MIt1i');
+            if (endMarker) {
+                endMarker.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                clearInterval(checkInterval);
 
+                // Attend un court instant pour laisser le temps au chargement dynamique
                 setTimeout(() => {
-                    const newHeight = document.body.scrollHeight;
-                    if (debug > 1) console.log(nameJavaScript + ".simulateManualScroll : tentative " + (scrollAttempts + 1) + ", hauteur : " + newHeight);
-
-                    if (newHeight > lastHeight) {
-                        lastHeight = newHeight;
-                        scrollAttempts = 0; // Réinitialise si de nouvelles activités sont chargées
-                    } else {
-                        scrollAttempts++;
-                    }
-
-                    if (scrollAttempts >= maxAttempts) {
-                        clearInterval(scrollInterval);
-                        resolve();
-                    }
-                }, 1500); // Délai augmenté pour laisser le temps au chargement
-            }, 2000);
-        });
-    }
+                    resolve();
+                }, 1000);
+            }
+        }, 500); // Vérifie toutes les 500 ms si l'élément est présent
+    });
+}
 
     // Action principale : scrolle puis donne les kudos
     async function actionButton() {
         if (debug > 1) console.log(nameJavaScript + ".actionButton : start");
-        await simulateManualScroll();
+        await scrollToEndMarker();
         giveKudo2all();
         if (debug > 1) console.log(nameJavaScript + ".actionButton : end");
     }
