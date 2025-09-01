@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name           Jan Strava Kudo (Clean Code)
+// @name           Jan Strava Kudo (Version Clean Code avec Bouton look Strava)
 // @namespace      https://github.com/janvandan
 // @description    Gère les kudos sur Strava avec le style initial du bouton
 // @include        https://www.strava.com/dashboard
@@ -9,7 +9,7 @@
 (function() {
     // ===== CONSTANTES =====
     const DEBUG_MODE = 2;
-    const SCRIPT_NAME = 'Jan Strava Kudo (Version Clean Clode)';
+    const SCRIPT_NAME = 'Jan Strava Kudo (Version Clean Code avec Bouton look Strava)';
     const ID_KUDO_FLAG = 'unfilled_kudos';
     const ID_FINAL_CLASS_SELECTOR = '.f5jBr.JlaW0';
     const ID_END_PAGE_CLASS_SELECTOR = '.MIt1i';
@@ -18,30 +18,42 @@
     const KUDO_DELAY_MS = 300;
     const INIT_DELAY_MS = 2000;
     const MAX_SCROLL_ATTEMPTS = 10;
+
+    // ===== ETATS =====
     let scrollAttemptsMax = 0;
     let kudoButton;
 
     // ===== FONCTIONS CORE =====
     /**
-     * Crée le bouton avec le style strava orange / en haut de page, au milieu.
+     * Crée le bouton avec le style initial.
+     * @returns {HTMLInputElement} Le bouton créé.
      */
     function createActionButton() {
         const button = document.createElement('input');
         button.id = 'myKudobutton';
         button.type = 'button';
         button.value = 'Give kudo to ALL';
+
         // Style initial simple
-        button.style.padding = '5px';
+        button.style.position = 'fixed'; // Position fixe pour éviter les déplacements
+        button.style.top = '70px';       // Positionnement en haut de page
+        button.style.left = '50%';       // Centré horizontalement
+        button.style.transform = 'translateX(-50%)'; // Ajustement pour le centrage
+        button.style.zIndex = '1000';     // Assure que le bouton est au-dessus des autres éléments
+        button.style.padding = '8px 16px';
         button.style.backgroundColor = '#fc5200';
         button.style.color = 'white';
         button.style.border = 'none';
         button.style.borderRadius = '5px';
         button.style.cursor = 'pointer';
+        button.style.fontWeight = 'bold';
+
         return button;
     }
 
     /**
      * Trouve le conteneur pour le bouton.
+     * @returns {HTMLElement|null} Le conteneur ou null s'il n'est pas trouvé.
      */
     function findButtonContainer() {
         return document.getElementById(ID_CONTAINER_FOR_BUTTON);
@@ -54,11 +66,14 @@
         const container = findButtonContainer();
         if (!container) {
             logError(`Impossible de trouver le conteneur '${ID_CONTAINER_FOR_BUTTON}'.`);
-            return;
+            // Si le conteneur n'est pas trouvé, ajoute le bouton directement au body
+            document.body.appendChild(createActionButton());
+            kudoButton = document.getElementById('myKudobutton');
+        } else {
+            kudoButton = createActionButton();
+            container.appendChild(kudoButton);
         }
 
-        kudoButton = createActionButton();
-        container.appendChild(kudoButton);
         kudoButton.addEventListener('click', handleButtonClick);
         logDebug('Bouton initialisé avec succès.');
     }
@@ -129,7 +144,7 @@
     }
 
     function showButton() {
-        if (kudoButton) kudoButton.style.display = 'inline';
+        if (kudoButton) kudoButton.style.display = 'block';
     }
 
     function removeButton() {
