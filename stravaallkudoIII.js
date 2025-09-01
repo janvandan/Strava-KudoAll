@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name           Jan Strava Kudo (Version finale - Style initial)
+// @name           Jan Strava Kudo (Clean Code)
 // @namespace      https://github.com/janvandan
 // @description    Gère les kudos sur Strava avec le style initial du bouton
 // @include        https://www.strava.com/dashboard
