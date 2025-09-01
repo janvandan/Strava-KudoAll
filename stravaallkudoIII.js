@@ -9,7 +9,7 @@
 (function() {
     // ===== CONSTANTES =====
     const DEBUG_MODE = 2;
-    const SCRIPT_NAME = 'Jan Strava Kudo (Version finale)';
+    const SCRIPT_NAME = 'Jan Strava Kudo (Version Clean Clode)';
     const ID_KUDO_FLAG = 'unfilled_kudos';
     const ID_FINAL_CLASS_SELECTOR = '.f5jBr.JlaW0';
     const ID_END_PAGE_CLASS_SELECTOR = '.MIt1i';
