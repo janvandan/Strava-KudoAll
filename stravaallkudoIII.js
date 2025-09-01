@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name           Jan Strava Kudo (Clean Code)
+// @name           Jan Strava Kudo (Version finale - Style initial)
 // @namespace      https://github.com/janvandan
-// @description    Gère les kudos sur Strava avec une approche Clean Code
+// @description    Gère les kudos sur Strava avec le style initial du bouton
 // @include        https://www.strava.com/dashboard
 // @grant          none
 // ==/UserScript==
@@ -9,7 +9,7 @@
 (function() {
     // ===== CONSTANTES =====
     const DEBUG_MODE = 2;
-    const SCRIPT_NAME = 'Jan Strava Kudo (Clean Code)';
+    const SCRIPT_NAME = 'Jan Strava Kudo (Version finale)';
     const ID_KUDO_FLAG = 'unfilled_kudos';
     const ID_FINAL_CLASS_SELECTOR = '.f5jBr.JlaW0';
     const ID_END_PAGE_CLASS_SELECTOR = '.MIt1i';
@@ -18,33 +18,37 @@
     const KUDO_DELAY_MS = 300;
     const INIT_DELAY_MS = 2000;
     const MAX_SCROLL_ATTEMPTS = 10;
-
-    // ===== ÉTAT =====
     let scrollAttemptsMax = 0;
     let kudoButton;
 
     // ===== FONCTIONS CORE =====
     /**
-     * Crée et initialise le bouton d'action.
+     * Crée le bouton avec le style strava orange / en haut de page, au milieu.
      */
     function createActionButton() {
         const button = document.createElement('input');
         button.id = 'myKudobutton';
         button.type = 'button';
         button.value = 'Give kudo to ALL';
+        // Style initial simple
+        button.style.padding = '5px';
+        button.style.backgroundColor = '#fc5200';
+        button.style.color = 'white';
+        button.style.border = 'none';
+        button.style.borderRadius = '5px';
+        button.style.cursor = 'pointer';
         return button;
     }
 
     /**
      * Trouve le conteneur pour le bouton.
-     * @returns {HTMLElement|null} Le conteneur ou null s'il n'est pas trouvé.
      */
     function findButtonContainer() {
         return document.getElementById(ID_CONTAINER_FOR_BUTTON);
     }
 
     /**
-     * Initialise le bouton et son écouteur d'événement.
+     * Initialise le bouton.
      */
     function initButton() {
         const container = findButtonContainer();
@@ -62,9 +66,9 @@
     // ===== GESTION DU SCROLL =====
     /**
      * Scrolle jusqu'à la fin du fil d'activités.
-     * @returns {Promise<boolean>} True si la classe finale est trouvée, false sinon.
+     * @returns {Promise<boolean>} True si la classe finale est trouvée.
      */
-    async function scrollToEnd() {
+    function scrollToEnd() {
         return new Promise((resolve) => {
             const interval = setInterval(() => {
                 scrollAttemptsMax++;
@@ -89,7 +93,7 @@
     }
 
     /**
-     * Scrolle jusqu'au marqueur de fin actuel.
+     * Scrolle vers le marqueur de fin actuel.
      */
     function scrollToEndMarker() {
         const endMarker = document.querySelector(ID_END_PAGE_CLASS_SELECTOR);
