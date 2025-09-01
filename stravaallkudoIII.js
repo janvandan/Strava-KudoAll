@@ -50,23 +50,26 @@
         if (debug > 1) console.log(nameJavaScript + ".giveKudo2all : end");
     }
 
-// Fonction pour scroller jusqu'à l'élément avec la classe "MIt1i"
-function scrollToEndMarker() {
-    return new Promise((resolve) => {
-        const checkInterval = setInterval(() => {
-            const endMarker = document.querySelector('.MIt1i');
-            if (endMarker) {
-                endMarker.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                clearInterval(checkInterval);
-
-                // Attend un court instant pour laisser le temps au chargement dynamique
-                setTimeout(() => {
+    // Scrolle jusqu'à ce que la classe finale 'f5jBr JlaW0' apparaisse
+    function scrollUntilFinalClass() {
+        return new Promise((resolve) => {
+            const checkFinalClass = setInterval(() => {
+                const finalMarker = document.querySelector('.f5jBr.JlaW0');
+                if (finalMarker) {
+                    clearInterval(checkFinalClass);
+                    if (debug > 1) console.log(nameJavaScript + ".scrollUntilFinalClass : Classe finale trouvée !");
                     resolve();
-                }, 1000);
-            }
-        }, 500); // Vérifie toutes les 500 ms si l'élément est présent
-    });
-}
+                } else {
+                    const endMarker = document.querySelector('.MIt1i');
+                    if (endMarker) {
+                        endMarker.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        window.dispatchEvent(new Event('scroll')); // Déclenche l'événement scroll
+                        if (debug > 1) console.log(nameJavaScript + ".scrollUntilFinalClass : Scroll vers MIt1i...");
+                    }
+                }
+            }, 3000); // Délai de 3 secondes entre chaque vérification
+        });
+    }
 
     // Action principale : scrolle puis donne les kudos
     async function actionButton() {
