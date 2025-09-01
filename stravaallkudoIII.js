@@ -74,7 +74,7 @@
     // Action principale : scrolle puis donne les kudos
     async function actionButton() {
         if (debug > 1) console.log(nameJavaScript + ".actionButton : start");
-        await scrollToEndMarker();
+        await scrollUntilFinalClass();
         giveKudo2all();
         if (debug > 1) console.log(nameJavaScript + ".actionButton : end");
     }
