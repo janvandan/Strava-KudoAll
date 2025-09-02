@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name           Jan Strava Kudo (Version Clean Code avec Bouton look Strava)
+// @name           Jan Strava Kudo (Version Clean Code avec bouton spinner)
 // @namespace      https://github.com/janvandan
-// @description    Gère les kudos sur Strava avec le style initial du bouton
+// @description    Gère les kudos sur Strava avec une roue de chargement pendant l'exécution
 // @include        https://www.strava.com/dashboard
 // @grant          none
 // ==/UserScript==
@@ -9,7 +9,7 @@
 (function() {
     // ===== CONSTANTES =====
     const DEBUG_MODE = 2;
-    const SCRIPT_NAME = 'Jan Strava Kudo (Version Clean Code avec Bouton look Strava)';
+    const SCRIPT_NAME = 'Jan Strava Kudo (Version finale)';
     const ID_KUDO_FLAG = 'unfilled_kudos';
     const ID_FINAL_CLASS_SELECTOR = '.f5jBr.JlaW0';
     const ID_END_PAGE_CLASS_SELECTOR = '.MIt1i';
@@ -18,64 +18,102 @@
     const KUDO_DELAY_MS = 300;
     const INIT_DELAY_MS = 2000;
     const MAX_SCROLL_ATTEMPTS = 10;
-
-    // ===== ETATS =====
     let scrollAttemptsMax = 0;
     let kudoButton;
+    let spinner;
+
+    // ===== STYLES =====
+    /**
+     * Injecte le style CSS pour le spinner et le bouton.
+     */
+    function injectStyles() {
+        const style = document.createElement('style');
+        style.textContent = `
+            #myKudobutton {
+                padding: 8px 16px;
+                background-color: #fc5200;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+                position: fixed;
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1000;
+            }
+
+            #kudo-spinner {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1001;
+                width: 30px;
+                height: 30px;
+                border: 3px solid rgba(252, 82, 0, 0.3);
+                border-radius: 50%;
+                border-top-color: #fc5200;
+                animation: spin 1s ease-in-out infinite;
+            }
+
+            @keyframes spin {
+                to { transform: translateX(-50%) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
 
     // ===== FONCTIONS CORE =====
     /**
      * Crée le bouton avec le style initial.
-     * @returns {HTMLInputElement} Le bouton créé.
      */
     function createActionButton() {
         const button = document.createElement('input');
         button.id = 'myKudobutton';
         button.type = 'button';
         button.value = 'Give kudo to ALL';
-
-        // Style initial simple
-        button.style.position = 'fixed'; // Position fixe pour éviter les déplacements
-        button.style.top = '70px';       // Positionnement en haut de page
-        button.style.left = '50%';       // Centré horizontalement
-        button.style.transform = 'translateX(-50%)'; // Ajustement pour le centrage
-        button.style.zIndex = '1000';     // Assure que le bouton est au-dessus des autres éléments
-        button.style.padding = '8px 16px';
-        button.style.backgroundColor = '#fc5200';
-        button.style.color = 'white';
-        button.style.border = 'none';
-        button.style.borderRadius = '5px';
-        button.style.cursor = 'pointer';
-        button.style.fontWeight = 'bold';
-
         return button;
     }
 
     /**
+     * Crée le spinner de chargement.
+     */
+    function createSpinner() {
+        const spinnerElement = document.createElement('div');
+        spinnerElement.id = 'kudo-spinner';
+        return spinnerElement;
+    }
+
+    /**
      * Trouve le conteneur pour le bouton.
-     * @returns {HTMLElement|null} Le conteneur ou null s'il n'est pas trouvé.
      */
     function findButtonContainer() {
         return document.getElementById(ID_CONTAINER_FOR_BUTTON);
     }
 
     /**
-     * Initialise le bouton.
+     * Initialise le bouton et le spinner.
      */
     function initButton() {
+        injectStyles(); // Injecte les styles CSS
+
         const container = findButtonContainer();
         if (!container) {
             logError(`Impossible de trouver le conteneur '${ID_CONTAINER_FOR_BUTTON}'.`);
-            // Si le conteneur n'est pas trouvé, ajoute le bouton directement au body
             document.body.appendChild(createActionButton());
-            kudoButton = document.getElementById('myKudobutton');
+            document.body.appendChild(createSpinner());
         } else {
-            kudoButton = createActionButton();
-            container.appendChild(kudoButton);
+            container.appendChild(createActionButton());
+            container.appendChild(createSpinner());
         }
 
+        kudoButton = document.getElementById('myKudobutton');
+        spinner = document.getElementById('kudo-spinner');
         kudoButton.addEventListener('click', handleButtonClick);
-        logDebug('Bouton initialisé avec succès.');
+        logDebug('Bouton et spinner initialisés avec succès.');
     }
 
     // ===== GESTION DU SCROLL =====
@@ -92,11 +130,12 @@
                 if (finalMarker) {
                     clearInterval(interval);
                     logDebug('Classe finale trouvée.');
-                    hideButton();
-                    setTimeout(() => removeButton(), 1000);
+                    stopSpinner();
+                    setTimeout(() => removeButtonAndSpinner(), 1000);
                     resolve(true);
                 } else if (scrollAttemptsMax >= MAX_SCROLL_ATTEMPTS) {
                     clearInterval(interval);
+                    stopSpinner();
                     showButton();
                     logDebug(`Classe finale introuvable après ${MAX_SCROLL_ATTEMPTS} tentatives.`);
                     resolve(false);
@@ -138,7 +177,7 @@
         });
     }
 
-    // ===== GESTION DU BOUTON =====
+    // ===== GESTION DE L'INTERFACE =====
     function hideButton() {
         if (kudoButton) kudoButton.style.display = 'none';
     }
@@ -147,9 +186,24 @@
         if (kudoButton) kudoButton.style.display = 'block';
     }
 
-    function removeButton() {
+    function startSpinner() {
+        if (spinner) {
+            spinner.style.display = 'block';
+        }
+    }
+
+    function stopSpinner() {
+        if (spinner) {
+            spinner.style.display = 'none';
+        }
+    }
+
+    function removeButtonAndSpinner() {
         if (kudoButton && kudoButton.parentNode) {
             kudoButton.parentNode.removeChild(kudoButton);
+        }
+        if (spinner && spinner.parentNode) {
+            spinner.parentNode.removeChild(spinner);
         }
     }
 
@@ -157,6 +211,8 @@
     async function handleButtonClick() {
         logDebug('Début du traitement.');
         hideButton();
+        startSpinner(); // Affiche le spinner
+
         const isEndReached = await scrollToEnd();
 
         if (isEndReached) {
