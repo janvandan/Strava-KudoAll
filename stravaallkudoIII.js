@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Jan Strava Kudo (Version Clean Code avec bouton spinner)
 // @namespace      https://github.com/janvandan
-// @description    Gère les kudos sur Strava avec une roue de chargement pendant l'exécution
+// @description    Gère les kudos sur Strava
 // @include        https://www.strava.com/dashboard
 // @grant          none
 // ==/UserScript==
@@ -9,7 +9,7 @@
 (function() {
     // ===== CONSTANTES =====
     const DEBUG_MODE = 2;
-    const SCRIPT_NAME = 'Jan Strava Kudo (Version finale)';
+    const SCRIPT_NAME = 'Jan Strava Kudo';
     const ID_KUDO_FLAG = 'unfilled_kudos';
     const ID_FINAL_CLASS_SELECTOR = '.f5jBr.JlaW0';
     const ID_END_PAGE_CLASS_SELECTOR = '.MIt1i';
