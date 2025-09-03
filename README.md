@@ -13,6 +13,6 @@ Could be use via an external launcher like Greasemonkey (https://fr.wikipedia.or
 **from 2025-09-03 : Current script to use : https://github.com/janvandan/Strava-KudoAll/blob/master/stravaallkudoIII.user.js**
 
 Archives :
-*from 2025-09-01 : Current script to use : https://github.com/janvandan/Strava-KudoAll/blob/master/stravaallkudoIII.js
-from 2021-08-10 : Current script to use : https://github.com/janvandan/Strava-KudoAll/blob/master/stravaallkudoII.js
-from 2019-08-20 to 2021-07-31 : stravaallkudo.js. Or, simply via the console, same as the "document.querySelectorAll('button.js-add-kudo').forEach(node => node.click());" line.*
+*from 2025-09-01 : Current script to use : https://github.com/janvandan/Strava-KudoAll/blob/master/stravaallkudoIII.js  
+from 2021-08-10 : Current script to use : https://github.com/janvandan/Strava-KudoAll/blob/master/stravaallkudoII.js  
+from 2019-08-20 to 2021-07-31 : stravaallkudo.js. Or, simply via the console, same as the "document.querySelectorAll('button.js-add-kudo').forEach(node => node.click());" line.*  
