@@ -2,7 +2,8 @@
 // @name           Jan Strava Kudo (Version Clean Code avec bouton spinner)
 // @namespace      https://github.com/janvandan
 // @description    Gère les kudos sur Strava
-// @include        https://www.strava.com/dashboard
+// @match          https://www.strava.com/dashboard*
+// @include        https://www.strava.com/dashboard*
 // @grant          none
 // ==/UserScript==
 
