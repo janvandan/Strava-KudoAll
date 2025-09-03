@@ -15,7 +15,7 @@
     const ID_KUDO_FLAG = 'unfilled_kudos';
     const ID_FINAL_CLASS_SELECTOR = '.f5jBr.JlaW0';
     const ID_END_PAGE_CLASS_SELECTOR = '.MIt1i';
-    const ID_CONTAINER_FOR_BUTTON = 'container-nav';
+    const ID_CONTAINER_FOR_BUTTON = 'main'; // au lieu de 'container-nav' pour compatibilité affichage mobile
     const SCROLL_DELAY_MS = 3000;
     const KUDO_DELAY_MS = 300;
     const INIT_DELAY_MS = 2000;
